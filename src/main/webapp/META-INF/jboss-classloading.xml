@@ -1,0 +1,4 @@
+<classloading xmlns="urn:jboss:classloading:1.0"
+	parent-domain="${project.build.finalName}.${project.packaging}"
+	import-all="true" parent-first="false">
+</classloading>

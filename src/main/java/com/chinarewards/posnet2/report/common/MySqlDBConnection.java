@@ -1,4 +1,4 @@
-package com.chinarewards.jreport.common;
+package com.chinarewards.posnet2.report.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

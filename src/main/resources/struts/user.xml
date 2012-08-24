@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<package name="user_Package" extends="default" namespace="/view/user">
+		
+ 		<action name="user_login" class="loginAction" method="userLogin">
+			<result name="success">/WEB-INF/jsp/login_test.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>

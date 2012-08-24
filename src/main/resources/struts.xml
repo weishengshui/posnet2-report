@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+	<!--
+		Constant section BEGINS 
+	 -->
+
+	<!-- Enable Struts debugging. -->
+	<!-- FIXME disable this for production -->
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources" value="global-messages" />
+
+	<!--
+		Our default package. All packages should extends this instead of
+		struts-defaults.
+		,struts-default,jasperreports-default
+	-->
+	<package name="default" extends="json-default" abstract="true">
+		<interceptors>
+			<interceptor name="logenabledException"
+				class="com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor">
+				<param name="logEnabled">true</param>
+			</interceptor>
+			
+			<!-- 
+			<interceptor name="login" class="loginCheckInterceptor" />
+			<interceptor name="menu" class="menuProcessInterceptor"></interceptor>
+			 -->
+			 
+			<interceptor-stack name="crStack">
+				<interceptor-ref name="logenabledException">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">error</param>
+				</interceptor-ref>
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="prepare" />
+				<!--
+					ChainInterceptor is disabled. See
+					https://redmine.dev.jifen.cc/projects/tiger/wiki/%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F#Struts
+					for details.
+				-->
+				<!-- <interceptor-ref name="chain"/> -->
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="profiling" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload" />
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="multiselect" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+
+			</interceptor-stack>
+
+		</interceptors>
+		
+		<default-interceptor-ref name="crStack"/>
+
+		<global-exception-mappings>
+			<!-- General error -->
+			<exception-mapping result="runtimeException" exception="java.lang.RuntimeException" />
+		</global-exception-mappings>
+
+	</package>
+
+	<!-- Nested include -->
+	<include file="/struts/common.xml"></include>
+
+</struts>

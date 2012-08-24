@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<package name="qqMeishi_Package" extends="default" namespace="/view/qqmeishi">
+		
+		<!-- 
+		<action name="show_adSetIndex" 
+			class="com.chinarewards.tiger2.b2c.action.admin.ad.AdminAdAction" method="showAdSetIndex">
+			<result name="success">/WEB-INF/jsp/admin/ad_set/ad_index.jsp</result>
+		</action>
+		 -->
+		 
+	</package>
+	
+</struts>

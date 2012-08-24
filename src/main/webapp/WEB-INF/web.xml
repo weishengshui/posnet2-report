@@ -1,8 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>jreport_demo</display-name>
+  	
+  	<display-name>jreport_demo</display-name>
   
-	<!-- JasperReport包中自带的Servlet，用来做为HTML形式显示报表的时候报表的图片，要在这里配置上，图片在jasperReport包中 -->  
+  	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/spring/applicationContext.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextClass</param-name>
+		<!--
+			<param-value>org.springframework.web.context.ContextLoaderListener</param-value>
+		-->
+		<!-- For JBoss 5 -->
+		<param-value>org.jboss.spring.vfs.context.VFSXmlWebApplicationContext</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- Filters -->
+	<filter>
+		<filter-name>action2-cleanup</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+	</filter>
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+<!-- 	<filter> -->
+<!-- 		<filter-name>action2</filter-name> -->
+<!-- 		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class> -->
+<!-- 	</filter> -->
+	<filter>
+	  <filter-name>action2</filter-name>
+	  <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<!--singleSession默认为true,若设为false则等于没用OpenSessionInView -->
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>action2-cleanup</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>action2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Filters END -->
+	
+  	
+  	<!-- Servlet -->
+	<servlet>
+		<servlet-name>jspSupportServlet</servlet-name>
+		<servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
+  	
+	<!-- JasperReport包中自带的Servlet，用来做为HTML形式显示报表的时候报表的图片，要在这里配置上，图片在jasperReport包中 
 	<servlet>  
 	    <servlet-name>JasperReportImageServlet</servlet-name>  
 	    <servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
@@ -11,7 +82,8 @@
 	    <servlet-name>JasperReportImageServlet</servlet-name>  
 	    <url-pattern>/servlet/image</url-pattern>  
 	</servlet-mapping>
-  
+  	-->
+  	<!--
 	<servlet>
 	  <servlet-name>HtmlExporter</servlet-name>
 	  <servlet-class>com.chinarewards.jreport.jasper.HtmlExporter</servlet-class>
@@ -20,4 +92,32 @@
 	  <servlet-name>HtmlExporter</servlet-name>
 	  <url-pattern>/htmlExporter</url-pattern>
 	</servlet-mapping>
+  	 Servlet ENDS -->
+	
+	
+	<session-config>
+		<!-- in minutes -->
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/struts-tags</taglib-uri>
+			<taglib-location>/WEB-INF/tld/struts-tags.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://www.opensymphony.com/sitemesh/decorator</taglib-uri>
+			<taglib-location>/WEB-INF/tld/sitemesh-decorator.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://www.opensymphony.com/sitemesh/page</taglib-uri>
+			<taglib-location>/WEB-INF/tld/sitemesh-page.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+	<!-- Welcome file lists -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
 </web-app>

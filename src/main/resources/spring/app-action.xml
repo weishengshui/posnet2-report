@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+	<context:annotation-config />
+	
+	<bean id="fooObject" class="com.chinarewards.posnet2.report.Foo"
+		scope="prototype">
+		<property name="id" value="id123"/>
+		<property name="name" value="name123"/>
+	</bean>
+	
+	<bean id="loginAction" class="com.chinarewards.posnet2.report.action.user.LoginAction" scope="prototype">
+		<property name="foo" ref="fooObject" />
+	</bean>
+
+</beans>
