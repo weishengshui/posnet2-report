@@ -17,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public List<Activity> findAllActivityList() {
-		logger.debug("service.findAllActivityList();");
+		logger.debug("service.findAllActivityList();  fuck jrebel-2.1a");
 		return activityDao.findAll();
 	}
 

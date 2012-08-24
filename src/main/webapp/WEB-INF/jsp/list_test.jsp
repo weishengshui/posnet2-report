@@ -8,7 +8,7 @@
 <title>login test</title>
 </head>
 <body>
-	<h1>Hello List!</h1>
+	<h1>Hello List!FUCK Jrebel...  222</h1>
 	
 	<table>
 		<s:iterator id="activity" value="#request.activityList" status="i">

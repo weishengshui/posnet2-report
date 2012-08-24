@@ -28,7 +28,7 @@ public class LoginAction extends BaseAction {
 	}
 	
 	public String findAllActivity() {
-		logger.info("action.findAllActivity();");
+		logger.info("action.findAllActivity(); fuck jrebel_2.1a");
 		activityList = loginService.findAllActivityList();
 		return SUCCESS;
 	}
