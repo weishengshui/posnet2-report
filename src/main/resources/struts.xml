@@ -17,9 +17,9 @@
 	<!--
 		Our default package. All packages should extends this instead of
 		struts-defaults.
-		,struts-default,jasperreports-default
+		json-default,struts-default,jasperreports-default
 	-->
-	<package name="default" extends="json-default" abstract="true">
+	<package name="default" extends="struts-default" abstract="true">
 		<interceptors>
 			<interceptor name="logenabledException"
 				class="com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor">

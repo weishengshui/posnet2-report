@@ -18,6 +18,7 @@
 	
 	<bean id="loginAction" class="com.chinarewards.posnet2.report.action.user.LoginAction" scope="prototype">
 		<property name="foo" ref="fooObject" />
+		<property name="loginService" ref="loginService" />
 	</bean>
 
 </beans>
