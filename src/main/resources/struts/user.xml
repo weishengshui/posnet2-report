@@ -10,7 +10,6 @@
 			<result name="success">/WEB-INF/jsp/login_test.jsp</result>
 		</action>
 		
-		
 		<action name="find_allActivity" class="loginAction" method="findAllActivity">
 			<result name="success">/WEB-INF/jsp/list_test.jsp</result>
 		</action>

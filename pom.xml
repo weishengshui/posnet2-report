@@ -58,7 +58,13 @@
 			<version>${slf4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
-        
+		<!-- MySQL JDBC driver - Use for running, not for programming -->
+<!--		<dependency>-->
+<!--			<groupId>mysql</groupId>-->
+<!--			<artifactId>mysql-connector-java</artifactId>-->
+<!--			<version>5.1.17</version>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
 		<!--
 			JBoss 5.1 and Spring 2.5.6 specific: JBoss 5.x's VFS and Spring's way
 			of class loading(?) cannot live happily together, there is a cure
@@ -233,27 +239,6 @@
 		</dependency>
 		<!-- Hibernate ENDS -->
 		
-<!-- 		<dependency> -->
-<!-- 		  <groupId>org.zeroturnaround</groupId> -->
-<!-- 		  <artifactId>javarebel-utils</artifactId> -->
-<!-- 		  <version>2.0.1</version> -->
-<!-- 		  <type>pom</type> -->
-<!-- 		</dependency> -->
-		<dependency>
-		  <groupId>org.zeroturnaround</groupId>
-		  <artifactId>javarebel-jboss-plugin</artifactId>
-		  <version>2.0.1</version>
-		  <exclusions>
-				<exclusion>
-					<groupId>org.zeroturnaround</groupId>
-					<artifactId>javarebel-utils</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.zeroturnaround</groupId>
-		 	 		<artifactId>javarebel-sdk</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 	</dependencies>
 	
 	
