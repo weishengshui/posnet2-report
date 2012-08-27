@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import com.chinarewards.posnet2.report.dao.user.ActivityDao;
 import com.chinarewards.posnet2.report.domain.activity.Activity;
+import com.chinarewards.posnet2.report.exception.DaoLevelException;
+import com.chinarewards.posnet2.report.exception.ServiceLevelException;
 
 
 public class LoginServiceImpl implements LoginService {
@@ -16,9 +18,13 @@ public class LoginServiceImpl implements LoginService {
 	private ActivityDao activityDao;
 
 	@Override
-	public List<Activity> findAllActivityList() {
+	public List<Activity> findAllActivityList() throws ServiceLevelException {
 		logger.debug("service.findAllActivityList();  fuck jrebel-2.1a");
-		return activityDao.findAll();
+		try {
+			return activityDao.findAll();
+		} catch (DaoLevelException e) {
+			throw new ServiceLevelException(e);
+		}
 	}
 
 	public ActivityDao getActivityDao() {

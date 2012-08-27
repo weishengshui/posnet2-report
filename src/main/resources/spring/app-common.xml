@@ -57,10 +57,8 @@
 		</property>
 		<property name="transactionAttributeSource">
 			<value>
-				<!-- Here config your Service class 
-					com.chinarewards.xxxService.*=PROPAGATION_REQUIRED
-					com.chinarewards.xxxService.*=PROPAGATION_REQUIRED
-				-->
+				<!-- config your service -->
+				com.chinarewards.posnet2.report.service.user.LoginService.*=PROPAGATION_REQUIRED,readOnly,-com.chinarewards.posnet2.report.exception.ServiceLevelException
 			</value>
 		</property>
 	</bean>

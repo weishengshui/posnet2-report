@@ -19,6 +19,7 @@
         <jasperreports.version>3.7.6</jasperreports.version>
         <jfreechart.version>1.0.13</jfreechart.version>
         <junit.version>3.8.2</junit.version>
+        <jackson.json.version>1.8.5</jackson.json.version>
         <slf4j.version>1.5.11</slf4j.version>
         <struts2.version>2.1.8.1</struts2.version>
         <xwork.version>2.1.6</xwork.version>
@@ -34,6 +35,7 @@
 	</organization>
 	
 	<dependencies>
+		<!-- EXCLUSIONS -->
 		<dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
@@ -41,8 +43,30 @@
             <type>jar</type>
           	<scope>provided</scope>
         </dependency>
+        <!-- EXCLUSIONS ENDS -->
         
-        <!--
+        <!-- LOG -->
+     	<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- LOG ENDS -->
+		
+		<!--
 			JBoss 5.1 and Spring 2.5.6 specific: JBoss 5.x's VFS and Spring's way
 			of class loading(?) cannot live happily together, there is a cure
 			which requires adding package to JBoss as well as application itself.
@@ -72,7 +96,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- End of JBoss 5.x and Spring 2.5.6 cure -->
-		<!-- Spring Ends -->
         
         <!-- LOG -->
      	<dependency>
@@ -112,6 +135,14 @@
 			<scope>test</scope>
 		</dependency>
         <!-- JUNIT ENDS -->
+        
+        <!-- JSON -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.json.version}</version>
+		</dependency>
+        <!-- JSON ENDS -->
         
         <!-- JasperReport -->
         <dependency>
@@ -303,7 +334,7 @@
 	
 	<build>
 		<plugins>
-			<!-- Comment out the JRebel plugin before you commit! 
+			<!-- Comment out the JRebel plugin before you commit! -->
 			<plugin>
 				<groupId>org.zeroturnaround</groupId>
 				<artifactId>javarebel-maven-plugin</artifactId>
@@ -321,7 +352,6 @@
 				</configuration>
 				<version>1.0.5</version>
 			</plugin>
-			-->
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -18,6 +18,7 @@ import com.chinarewards.posnet2.report.Foo;
 import com.chinarewards.posnet2.report.action.BaseAction;
 import com.chinarewards.posnet2.report.action.report.ReportExporter;
 import com.chinarewards.posnet2.report.domain.activity.Activity;
+import com.chinarewards.posnet2.report.exception.ServiceLevelException;
 import com.chinarewards.posnet2.report.service.user.LoginService;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -44,7 +45,11 @@ public class LoginAction extends BaseAction {
 	
 	public String findAllActivity() {
 		logger.info("action.findAllActivity(); fuck jrebel_2.1a");
-		activityList = loginService.findAllActivityList();
+		try {
+			activityList = loginService.findAllActivityList();
+		} catch (ServiceLevelException e) {
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -77,7 +82,6 @@ public class LoginAction extends BaseAction {
 			JasperPrint jasperPrint = JasperFillManager.fillReport(
 					reportFileName, parameters, new JRBeanCollectionDataSource(activityList));
 			String path = this.request.getRequestURI();
-			System.out.println(path);
 			if(path.indexOf("/test_report1XLS.action") != -1){
 				String nameXls = "ExchangeStatusDetail.xls";
 				ReportExporter.exportXls(response, jasperPrint, nameXls);
@@ -86,7 +90,6 @@ public class LoginAction extends BaseAction {
 				ReportExporter.exportPdf(response, jasperPrint);
 			}
 			if(path.indexOf("/test_report1HTML.action") != -1){
-				System.out.println(111);
 				ReportExporter.exportHtml(response, request, application, jasperPrint);
 			}
 			
