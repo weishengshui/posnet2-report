@@ -16,15 +16,16 @@
 	</parent>
     <properties>
         <!-- Centrally maintained system dependency -->
-        <commons.version>2.0.0</commons.version>
         <jasperreports.version>3.7.6</jasperreports.version>
         <jfreechart.version>1.0.13</jfreechart.version>
         <junit.version>3.8.2</junit.version>
-        <dom4j.version>1.6.1</dom4j.version>
         <slf4j.version>1.5.11</slf4j.version>
-        <log4j.version>1.2.15</log4j.version>
         <struts2.version>2.1.8.1</struts2.version>
+        <xwork.version>2.1.6</xwork.version>
+        <freemarker.version>2.3.15</freemarker.version>
+        <ojnl.version>2.7.3</ojnl.version>
         <spring.version>2.5.6</spring.version>
+        <hibernate.version>3.3.1.GA</hibernate.version>
         <jdk.version>1.6</jdk.version>
     </properties>
 	<organization>
@@ -40,26 +41,8 @@
             <type>jar</type>
           	<scope>provided</scope>
         </dependency>
-     	<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
         
-		<!--
+        <!--
 			JBoss 5.1 and Spring 2.5.6 specific: JBoss 5.x's VFS and Spring's way
 			of class loading(?) cannot live happily together, there is a cure
 			which requires adding package to JBoss as well as application itself.
@@ -90,33 +73,131 @@
 		</dependency>
 		<!-- End of JBoss 5.x and Spring 2.5.6 cure -->
 		<!-- Spring Ends -->
-		
-		<!-- Struts2 -->
+        
+        <!-- LOG -->
+     	<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+        <!-- LOG ENDS -->
+        
+        <!-- SERVLET -->
+        <dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+        <!-- SERVLET ENDS -->
+        
+        <!-- JUNIT -->
+        <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+        <!-- JUNIT ENDS -->
+        
+        <!-- JasperReport -->
+        <dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasperreports.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>${jfreechart.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.6</version>
+		</dependency>
+		<dependency>
+			<groupId>displaytag</groupId>
+			<artifactId>displaytag</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>iTextAsian</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>oro</groupId>
+			<artifactId>oro</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+		<!-- JasperReport ENDS -->
+        
+		<!-- Struts2 -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
-			<version>2.1.8.1</version>
+			<version>${struts2.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.struts</groupId> -->
-<!-- 			<artifactId>struts2-json-plugin</artifactId> -->
-<!-- 			<version>2.1.8.1</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
+			<version>${struts2.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-spring-plugin</artifactId>
-			<version>2.1.8.1</version>
+			<version>${struts2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-jasperreports-plugin</artifactId>
+			<version>${struts2.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>jasperreports</groupId>
+					<artifactId>jasperreports</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.opensymphony</groupId>
 			<artifactId>xwork-core</artifactId>
-			<version>2.1.6</version>
+			<version>${xwork.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ognl</groupId>
+			<artifactId>ognl</artifactId>
+			<version>${ojnl.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -133,28 +214,18 @@
 			<artifactId>commons-logging</artifactId>
 			<version>1.0.4</version>
 		</dependency>
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-			<version>2.3.15</version>
-		</dependency>
-		<dependency>
-			<groupId>ognl</groupId>
-			<artifactId>ognl</artifactId>
-			<version>2.7.3</version>
-		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>net.sf.json-lib</groupId> -->
-<!-- 			<artifactId>json-lib</artifactId> -->
-<!-- 			<version>2.1</version> -->
-<!-- 		</dependency> -->
 		<!-- Struts2 ENDS -->
 		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
-			<version>2.5.6</version>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
@@ -171,18 +242,13 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
-			<version>2.5.6</version>
-		</dependency>
 		<!-- Spring ENDS -->
 		
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>3.3.1.GA</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -232,34 +298,12 @@
 			<version>2.4.2</version>
 		</dependency>
 		<!-- Hibernate ENDS -->
-		
-<!-- 		<dependency> -->
-<!-- 		  <groupId>org.zeroturnaround</groupId> -->
-<!-- 		  <artifactId>javarebel-utils</artifactId> -->
-<!-- 		  <version>2.0.1</version> -->
-<!-- 		  <type>pom</type> -->
-<!-- 		</dependency> -->
-		<dependency>
-		  <groupId>org.zeroturnaround</groupId>
-		  <artifactId>javarebel-jboss-plugin</artifactId>
-		  <version>2.0.1</version>
-		  <exclusions>
-				<exclusion>
-					<groupId>org.zeroturnaround</groupId>
-					<artifactId>javarebel-utils</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.zeroturnaround</groupId>
-		 	 		<artifactId>javarebel-sdk</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 	</dependencies>
 	
 	
 	<build>
 		<plugins>
-			<!-- Comment out the JRebel plugin before you commit! -->
+			<!-- Comment out the JRebel plugin before you commit! 
 			<plugin>
 				<groupId>org.zeroturnaround</groupId>
 				<artifactId>javarebel-maven-plugin</artifactId>
@@ -277,6 +321,7 @@
 				</configuration>
 				<version>1.0.5</version>
 			</plugin>
+			-->
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

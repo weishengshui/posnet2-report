@@ -73,7 +73,7 @@
 		<load-on-startup>5</load-on-startup>
 	</servlet>
   	
-	<!-- JasperReport包中自带的Servlet，用来做为HTML形式显示报表的时候报表的图片，要在这里配置上，图片在jasperReport包中 
+	<!-- JasperReport包中自带的Servlet，用来做为HTML形式显示报表的时候报表的图片，要在这里配置上，图片在jasperReport包中 -->
 	<servlet>  
 	    <servlet-name>JasperReportImageServlet</servlet-name>  
 	    <servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
@@ -82,17 +82,7 @@
 	    <servlet-name>JasperReportImageServlet</servlet-name>  
 	    <url-pattern>/servlet/image</url-pattern>  
 	</servlet-mapping>
-  	-->
-  	<!--
-	<servlet>
-	  <servlet-name>HtmlExporter</servlet-name>
-	  <servlet-class>com.chinarewards.jreport.jasper.HtmlExporter</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	  <servlet-name>HtmlExporter</servlet-name>
-	  <url-pattern>/htmlExporter</url-pattern>
-	</servlet-mapping>
-  	 Servlet ENDS -->
+  	<!-- Servlet ENDS -->
 	
 	
 	<session-config>

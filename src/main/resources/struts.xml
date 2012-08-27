@@ -11,15 +11,14 @@
 
 	<!-- Enable Struts debugging. -->
 	<!-- FIXME disable this for production -->
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="false" />
 	<constant name="struts.custom.i18n.resources" value="global-messages" />
 
 	<!--
 		Our default package. All packages should extends this instead of
 		struts-defaults.
-		json-default,struts-default,jasperreports-default
 	-->
-	<package name="default" extends="struts-default" abstract="true">
+	<package name="default" extends="struts-default,json-default,jasperreports-default" abstract="true">
 		<interceptors>
 			<interceptor name="logenabledException"
 				class="com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor">

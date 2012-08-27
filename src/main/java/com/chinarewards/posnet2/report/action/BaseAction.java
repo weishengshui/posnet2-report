@@ -2,6 +2,7 @@ package com.chinarewards.posnet2.report.action;
 
 import java.io.Serializable;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,18 +17,19 @@ import com.opensymphony.xwork2.Preparable;
 public class BaseAction extends ActionSupport implements Serializable, Preparable {
 	
 	private static final long serialVersionUID = -6855114700602349075L;
+	
 	/**
 	 * Instance of logger for logging message.
 	 */
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 
-	protected HttpServletRequest httpServletRequest;
+	protected HttpServletRequest request;
 
-	protected HttpServletResponse httpServletResponse;
+	protected HttpServletResponse response;
 
 	protected HttpSession session;
-
-	protected String msg;
+	
+	protected ServletContext application;
 
 	public BaseAction() {
 		super();
@@ -37,9 +39,10 @@ public class BaseAction extends ActionSupport implements Serializable, Preparabl
 	public void prepare() throws Exception {
 		logger.info("getRequest:" + ServletActionContext.getRequest());
 		logger.info("getResponse:" + ServletActionContext.getResponse());
-		this.httpServletRequest = ServletActionContext.getRequest();
-		this.httpServletResponse = ServletActionContext.getResponse();
-		this.session = this.httpServletRequest.getSession();
+		this.request = ServletActionContext.getRequest();
+		this.response = ServletActionContext.getResponse();
+		this.session = this.request.getSession();
+		this.application = this.session.getServletContext();
 	}
 
 	/**
@@ -48,7 +51,7 @@ public class BaseAction extends ActionSupport implements Serializable, Preparabl
 	 * @author Seek
 	 */
 	protected String getContextPath() {
-		return this.httpServletRequest.getContextPath();
+		return this.request.getContextPath();
 	}
 	
 	/**
@@ -57,10 +60,10 @@ public class BaseAction extends ActionSupport implements Serializable, Preparabl
 	 * @author Seek
 	 */
 	protected String getCurrentPath() {
-		StringBuffer urlBuff = new StringBuffer(this.httpServletRequest.getRequestURI());
-		if (this.httpServletRequest.getQueryString() != null) {
+		StringBuffer urlBuff = new StringBuffer(this.request.getRequestURI());
+		if (this.request.getQueryString() != null) {
 			urlBuff.append("?");
-			urlBuff.append(this.httpServletRequest.getQueryString());
+			urlBuff.append(this.request.getQueryString());
 		}
 		logger.debug("getCurrentPath()   currentURL:"+urlBuff);
 		return urlBuff.toString();

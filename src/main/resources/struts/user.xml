@@ -15,6 +15,27 @@
 			<result name="success">/WEB-INF/jsp/list_test.jsp</result>
 		</action>
 		
+		<action name="test_json1" class="loginAction" method="testJson1">
+			<result name="success" type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		
+		<action name="test_json2" class="loginAction" method="testJson2">
+			<result name="success" type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		
+		<action name="test_report1*" class="loginAction" method="testReport1">
+			<result name="success" type="jasper">
+				<param name="location">/WEB-INF/jasper/Activity.jasper</param>
+				<param name="format">{1}</param>
+			</result>
+		</action>
+		
 	</package>
 	
 </struts>
