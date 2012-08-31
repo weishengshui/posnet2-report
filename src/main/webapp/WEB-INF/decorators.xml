@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <decorators defaultdir="/WEB-INF/decorators">
     <!-- Any URLs that are excluded will never be decorated by Sitemesh -->
@@ -17,9 +17,44 @@
         
 
     </excludes>
+	
 
-    <decorator name="main" page="main.jsp">
-        <pattern>/*</pattern>	
-    </decorator>
+<!--	<decorator name="main2" page="main2.jsp">-->
+<!--		<pattern>/coastalCity201207/detailCountCondition20120726.jsp</pattern>-->
+<!--		<pattern>/templateReport/detaiConditionStatementsTemplate.jsp</pattern>-->
+<!--	</decorator>-->
+
+
+<!--	<decorator name="main3" page="main3.jsp">-->
+<!--		<pattern>/coastalCity201207/detailCountResult20120726.jsp</pattern>-->
+<!--		<pattern>/coastalCity201207/empty.jsp</pattern>-->
+<!--		<pattern>/templateReport/detailResultStatementsTemplate.jsp</pattern>-->
+<!--		<pattern>/templateReport/empty.jsp</pattern>-->
+<!--	</decorator>-->
+
+<!--	<decorator name="main" page="main.jsp">-->
+<!--		<pattern>/index.jsp</pattern>-->
+<!--		<pattern>/login.jsp</pattern>-->
+<!--		<pattern>/generalreportmenu.jsp</pattern>-->
+<!--		<pattern>/itreportmenu.jsp</pattern>-->
+<!--		<pattern>/coastalCity201207.jsp</pattern>-->
+<!--		<pattern>/templateReport/reportTemplate.jsp</pattern>-->
+<!--	</decorator>-->
+
+	<!--	装饰首页背景	-->
+	<decorator name="main4" page="main4.jsp">
+		<pattern>/pub/index.jsp</pattern>
+		<pattern>/pub/login.action</pattern>
+	</decorator>
+	
+	<!--	装饰工作主界面的菜单栏	-->
+	<decorator name="main" page="main.jsp">
+		<pattern>/view/qqmeishi/reportTemplate.action</pattern>
+	</decorator>
+	
+	<!--	装饰页面的头和尾	-->
+	<decorator name="main1" page="main1.jsp">
+		<pattern>/*</pattern>
+	</decorator>
    
 </decorators>

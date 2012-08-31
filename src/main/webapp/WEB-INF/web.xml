@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  	
-  	<display-name>jreport_demo</display-name>
-  
-  	<context-param>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<display-name>jreport_demo</display-name>
+
+	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/spring/applicationContext.xml</param-value>
+		<param-value>
+			/WEB-INF/classes/spring/applicationContext.xml
+			/WEB-INF/classes/spring/applicationContext-security.xml
+		</param-value>
 	</context-param>
 	<context-param>
 		<param-name>contextClass</param-name>
-		<!--
-			<param-value>org.springframework.web.context.ContextLoaderListener</param-value>
-		-->
+		<!-- <param-value>org.springframework.web.context.ContextLoaderListener</param-value> -->
 		<!-- For JBoss 5 -->
 		<param-value>org.jboss.spring.vfs.context.VFSXmlWebApplicationContext</param-value>
 	</context-param>
+
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<!-- Filters -->
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+
+
 	<filter>
 		<filter-name>action2-cleanup</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
@@ -32,10 +50,10 @@
 		<filter-name>action2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
 	</filter>
-<!-- 	<filter> -->
-<!-- 	  <filter-name>action2</filter-name> -->
-<!-- 	  <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class> -->
-<!-- 	</filter> -->
+	<!-- <filter> -->
+	<!-- <filter-name>action2</filter-name> -->
+	<!-- <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class> -->
+	<!-- </filter> -->
 	<filter>
 		<filter-name>openSessionInViewFilter</filter-name>
 		<filter-class>
@@ -46,7 +64,7 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>action2-cleanup</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -64,27 +82,71 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- Filters END -->
-	
-  	
-  	<!-- Servlet -->
+
+
+	<!-- google Kaptcha 验证码 -->
+	<servlet>
+		<servlet-name>kaptcha</servlet-name>
+		<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+		<init-param>
+			<param-name>kaptcha.border</param-name>
+			<param-value>yes</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.textproducer.char.length</param-name>
+			<param-value>4</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.textproducer.font.size</param-name>
+			<param-value>30</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>kaptcha.image.width</param-name>
+			<param-value>90</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.image.height</param-name>
+			<param-value>33</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.textproducer.char.string</param-name>
+			<param-value>1234567890</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.noise.impl</param-name>
+			<param-value>com.google.code.kaptcha.impl.NoNoise</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.session.key</param-name>
+			<param-value>code</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>kaptcha</servlet-name>
+		<url-pattern>/kaptcha.jpg</url-pattern>
+	</servlet-mapping>
+	<!-- ENDS google Kaptcha 验证码 -->
+
+	<!-- Servlet -->
 	<servlet>
 		<servlet-name>jspSupportServlet</servlet-name>
 		<servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>
 		<load-on-startup>5</load-on-startup>
 	</servlet>
-  	
+
 	<!-- JasperReport包中自带的Servlet，用来做为HTML形式显示报表的时候报表的图片，要在这里配置上，图片在jasperReport包中 -->
-	<servlet>  
-	    <servlet-name>JasperReportImageServlet</servlet-name>  
-	    <servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
-	</servlet>  
-	<servlet-mapping>  
-	    <servlet-name>JasperReportImageServlet</servlet-name>  
-	    <url-pattern>/servlet/image</url-pattern>  
+	<servlet>
+		<servlet-name>JasperReportImageServlet</servlet-name>
+		<servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JasperReportImageServlet</servlet-name>
+		<url-pattern>/servlet/image</url-pattern>
 	</servlet-mapping>
-  	<!-- Servlet ENDS -->
-	
-	
+	<!-- Servlet ENDS -->
+
+
 	<session-config>
 		<!-- in minutes -->
 		<session-timeout>30</session-timeout>
@@ -107,7 +169,7 @@
 
 	<!-- Welcome file lists -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>pub/index.jsp</welcome-file>
 	</welcome-file-list>
 
 </web-app>

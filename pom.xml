@@ -14,39 +14,39 @@
 		<artifactId>root</artifactId>
 		<version>2.1.0-SNAPSHOT</version>
 	</parent>
-    <properties>
-        <!-- Centrally maintained system dependency -->
-        <jasperreports.version>3.7.6</jasperreports.version>
-        <jfreechart.version>1.0.13</jfreechart.version>
-        <junit.version>3.8.2</junit.version>
-        <jackson.json.version>1.8.5</jackson.json.version>
-        <slf4j.version>1.5.11</slf4j.version>
-        <struts2.version>2.1.8.1</struts2.version>
-        <xwork.version>2.1.6</xwork.version>
-        <freemarker.version>2.3.15</freemarker.version>
-        <ojnl.version>2.7.3</ojnl.version>
-        <spring.version>2.5.6</spring.version>
-        <hibernate.version>3.3.1.GA</hibernate.version>
-        <jdk.version>1.6</jdk.version>
-    </properties>
+	<properties>
+		<!-- Centrally maintained system dependency -->
+		<jasperreports.version>3.7.6</jasperreports.version>
+		<jfreechart.version>1.0.13</jfreechart.version>
+		<junit.version>3.8.2</junit.version>
+		<jackson.json.version>1.8.5</jackson.json.version>
+		<slf4j.version>1.5.11</slf4j.version>
+		<struts2.version>2.1.8.1</struts2.version>
+		<xwork.version>2.1.6</xwork.version>
+		<freemarker.version>2.3.15</freemarker.version>
+		<ojnl.version>2.7.3</ojnl.version>
+		<spring.version>2.5.6</spring.version>
+		<hibernate.version>3.3.1.GA</hibernate.version>
+		<jdk.version>1.6</jdk.version>
+	</properties>
 	<organization>
 		<name>China Rewards</name>
 		<url>http://www.china-rewards.com</url>
 	</organization>
-	
+
 	<dependencies>
 		<!-- EXCLUSIONS -->
 		<dependency>
-            <groupId>xml-apis</groupId>
-            <artifactId>xml-apis</artifactId>
-            <version>1.0.b2</version>
-            <type>jar</type>
-          	<scope>provided</scope>
-        </dependency>
-        <!-- EXCLUSIONS ENDS -->
-        
-        <!-- LOG -->
-     	<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.0.b2</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<!-- EXCLUSIONS ENDS -->
+
+		<!-- LOG -->
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
@@ -65,14 +65,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- LOG ENDS -->
-		
-		<!--
-			JBoss 5.1 and Spring 2.5.6 specific: JBoss 5.x's VFS and Spring's way
-			of class loading(?) cannot live happily together, there is a cure
-			which requires adding package to JBoss as well as application itself.
-			http://forum.springsource.org/showthread.php?t=19884
-			http://forum.springsource.org/showthread.php?t=12525
-		-->
+
+		<!-- JBoss 5.1 and Spring 2.5.6 specific: JBoss 5.x's VFS and Spring's 
+			way of class loading(?) cannot live happily together, there is a cure which 
+			requires adding package to JBoss as well as application itself. http://forum.springsource.org/showthread.php?t=19884 
+			http://forum.springsource.org/showthread.php?t=12525 -->
 		<dependency>
 			<groupId>org.jboss.snowdrop</groupId>
 			<artifactId>snowdrop-vfs</artifactId>
@@ -96,9 +93,9 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- End of JBoss 5.x and Spring 2.5.6 cure -->
-        
-        <!-- LOG -->
-     	<dependency>
+
+		<!-- LOG -->
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
@@ -116,36 +113,36 @@
 			<version>${slf4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
-        <!-- LOG ENDS -->
-        
-        <!-- SERVLET -->
-        <dependency>
+		<!-- LOG ENDS -->
+
+		<!-- SERVLET -->
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-        <!-- SERVLET ENDS -->
-        
-        <!-- JUNIT -->
-        <dependency>
+		<!-- SERVLET ENDS -->
+
+		<!-- JUNIT -->
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-        <!-- JUNIT ENDS -->
-        
-        <!-- JSON -->
+		<!-- JUNIT ENDS -->
+
+		<!-- JSON -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson.json.version}</version>
 		</dependency>
-        <!-- JSON ENDS -->
-        
-        <!-- JasperReport -->
-        <dependency>
+		<!-- JSON ENDS -->
+
+		<!-- JasperReport -->
+		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>${jasperreports.version}</version>
@@ -187,7 +184,7 @@
 			<version>2.0.8</version>
 		</dependency>
 		<!-- JasperReport ENDS -->
-        
+
 		<!-- Struts2 -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -246,35 +243,35 @@
 			<version>1.0.4</version>
 		</dependency>
 		<!-- Struts2 ENDS -->
-		
+
 		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>2.1_3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>1.6.1</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring</artifactId> -->
+		<!-- <version>${spring.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-aspects</artifactId> -->
+		<!-- <version>${spring.version}</version> -->
+		<!-- </dependency> -->
+		 <dependency> 
+		 <groupId>cglib</groupId> 
+		 <artifactId>cglib-nodep</artifactId> 
+		 <version>2.1_3</version> 
+		 </dependency> 
+		 <dependency> 
+		 <groupId>org.aspectj</groupId> 
+		 <artifactId>aspectjweaver</artifactId> 
+		 <version>1.6.1</version> 
+		 </dependency> 
+		 <dependency> 
+		 <groupId>org.aspectj</groupId> 
+		 <artifactId>aspectjrt</artifactId> 
+		 <version>1.6.1</version> 
+		 </dependency> 
 		<!-- Spring ENDS -->
-		
+
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -329,12 +326,74 @@
 			<version>2.4.2</version>
 		</dependency>
 		<!-- Hibernate ENDS -->
+
+		<!-- google kaptcha -->
+		<dependency>
+			<groupId>com.google.code</groupId>
+			<artifactId>kaptcha</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<!-- google kaptcha ENDS -->
+
+		<!-- spring security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<!-- spring security ENDS -->
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>3.0.0.RELEASE</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>3.0.0.RELEASE</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<!-- spring ENDS -->
+
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
-	
-	
+
+
 	<build>
 		<plugins>
-			<!-- Comment out the JRebel plugin before you commit! 
+			<!-- Comment out the JRebel plugin before you commit! -->
 			<plugin>
 				<groupId>org.zeroturnaround</groupId>
 				<artifactId>javarebel-maven-plugin</artifactId>
@@ -352,8 +411,7 @@
 				</configuration>
 				<version>1.0.5</version>
 			</plugin>
-			-->
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -376,5 +434,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

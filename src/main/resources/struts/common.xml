@@ -9,4 +9,5 @@
 	<include file="/struts/user.xml" />
 	<include file="/struts/qqmeishi.xml" />
 	
+	
 </struts>

@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.chinarewards.posnet2.report.Foo;
 import com.chinarewards.posnet2.report.action.BaseAction;
 import com.chinarewards.posnet2.report.action.report.ReportExporter;
-import com.chinarewards.posnet2.report.domain.activity.Activity;
+import com.chinarewards.posnet2.report.domain.Activity;
 import com.chinarewards.posnet2.report.exception.ServiceLevelException;
 import com.chinarewards.posnet2.report.service.user.LoginService;
 import com.opensymphony.xwork2.ActionContext;

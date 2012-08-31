@@ -16,5 +16,9 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="userDao" class="com.chinarewards.posnet2.report.dao.user.UserDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 </beans>

@@ -33,7 +33,9 @@
 		<property name="annotatedClasses">
 			<list>
 				<!-- Here config your domain class list -->
-				<value>com.chinarewards.posnet2.report.domain.activity.Activity</value>
+				<value>com.chinarewards.posnet2.report.domain.Activity</value>
+				<value>com.chinarewards.posnet2.report.domain.Report_User</value>
+				<value>com.chinarewards.posnet2.report.domain.Report_Role</value>
 			</list>
 		</property>
 

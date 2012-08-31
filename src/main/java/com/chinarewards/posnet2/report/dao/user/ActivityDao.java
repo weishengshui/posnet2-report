@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.chinarewards.posnet2.report.dao.BaseDao;
-import com.chinarewards.posnet2.report.domain.activity.Activity;
+import com.chinarewards.posnet2.report.domain.Activity;
 import com.chinarewards.posnet2.report.exception.DaoLevelException;
 
 public class ActivityDao extends BaseDao<Activity> {
