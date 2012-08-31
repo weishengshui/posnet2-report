@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
@@ -16,8 +17,10 @@ public class Role_Authorities  implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7782046758548562633L;
+	@Id
 	@Column(name="rolename")
 	private String rolename;
+	@Id
 	@Column(name="authority")
 	private String authority;
 	
