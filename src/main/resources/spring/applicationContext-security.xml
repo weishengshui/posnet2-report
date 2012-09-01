@@ -23,7 +23,7 @@
 
 		<intercept-url pattern="/**" access="permitAll" />
 		
-		<form-login login-page="/pub/index.jsp" default-target-url="/login.action"
+		<form-login login-page="/pub/index.jsp" default-target-url="/pub/login.action"
 		     always-use-default-target="true"
 		     authentication-failure-url="/pub/index.jsp?error=true"/>
 		
@@ -42,9 +42,6 @@
 				authorities-by-username-query="SELECT u.username, a.authority AS authority FROM report_user u, report_authorities a,
 report_user_role ur,report_role_authorities ra,report_role r 
 WHERE u.username=ur.username and ur.rolename=r.rolename and r.rolename=ra.rolename and ra.authority=a.authority and u.username=?"/>
-
-
-
 <!-- 			<user-service> -->
 <!-- 				<user name="admin" password="admin" authorities="report_detail, report_token, report_total" /> -->
 <!-- 				<user name="detail" password="detail" authorities="report_detail" /> -->
