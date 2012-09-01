@@ -22,6 +22,11 @@
 
 
 		<intercept-url pattern="/**" access="permitAll" />
+		
+		<form-login login-page="/pub/index.jsp" default-target-url="/login.action"
+		     always-use-default-target="true"
+		     authentication-failure-url="/pub/index.jsp?error=true"/>
+		
 		<session-management>
 			<concurrency-control max-sessions="1"
 				expired-url="/" />
@@ -32,15 +37,21 @@
 	
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="posnet2ReportDataSource" 
-				users-by-username-query=""
-				authorities-by-username-query=""/>
-			<user-service>
-				<user name="admin" password="admin" authorities="report_detail, report_token, report_total" />
-				<user name="detail" password="detail" authorities="report_detail" />
-				<user name="token" password="token" authorities="report_token" />
-				<user name="total" password="total" authorities="report_total" />
-				<user name="mix" password="mix" authorities="report_detail, report_token" />
-			</user-service>
+				users-by-username-query="SELECT username,password, enabled as status FROM report_user WHERE username=?"
+				
+				authorities-by-username-query="SELECT u.username, a.authority AS authority FROM report_user u, report_authorities a,
+report_user_role ur,report_role_authorities ra,report_role r 
+WHERE u.username=ur.username and ur.rolename=r.rolename and r.rolename=ra.rolename and ra.authority=a.authority and u.username=?"/>
+
+
+
+<!-- 			<user-service> -->
+<!-- 				<user name="admin" password="admin" authorities="report_detail, report_token, report_total" /> -->
+<!-- 				<user name="detail" password="detail" authorities="report_detail" /> -->
+<!-- 				<user name="token" password="token" authorities="report_token" /> -->
+<!-- 				<user name="total" password="total" authorities="report_total" /> -->
+<!-- 				<user name="mix" password="mix" authorities="report_detail, report_token" /> -->
+<!-- 			</user-service> -->
 		</authentication-provider>
 	</authentication-manager>
 

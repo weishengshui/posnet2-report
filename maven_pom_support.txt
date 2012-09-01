@@ -1,0 +1,7 @@
+mvn install:install-file -DgroupId=com.lowagie -DartifactId=iTextAsian -Dversion=1.0 -Dpackaging=jar -Dfile=iTextAsian-1.0.jar
+
+
+
+mvn install:install-file -DgroupId=org.jboss.snowdrop -DartifactId=snowdrop-vfs -Dversion=1.0.0.GA -Dpackaging=jar -Dfile=snowdrop-vfs-1.0.0.GA.jar
+
+mvn install:install-file -DgroupId=org.jboss.snowdrop -DartifactId=snowdrop-deployers -Dversion=1.0.0.GA -Dpackaging=jar -Dfile=snowdrop-deployers-1.0.0.GA.jar

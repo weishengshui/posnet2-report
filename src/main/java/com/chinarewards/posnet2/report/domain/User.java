@@ -23,6 +23,9 @@ public class User   implements Serializable {
 	@Column(name="password")
 	private String password;
 	
+	@Column(name="enabled")
+	private Boolean enabled;
+	
 	@Column(name="activity_id")
 	private String activity_id;
 	
@@ -56,6 +59,15 @@ public class User   implements Serializable {
 	public void setDescn(String descn) {
 		this.descn = descn;
 	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 	
 	
 }

@@ -3,6 +3,7 @@
 <%@ taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>	
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ include file="/WEB-INF/jsp/rootPath/ctxrootPath.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -24,7 +25,7 @@
 		<span>&nbsp;Welcome Report System</span>
 	</s:if>
 	<s:else>
-		<span>Hello&nbsp;<s:property value="#session.User" />&nbsp;Welcome Report System</span>
+		<span>Hello&nbsp;<sec:authentication property="name"/>&nbsp;Welcome Report System</span>
 	</s:else>
 </div>
 

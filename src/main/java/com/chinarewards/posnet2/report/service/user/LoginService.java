@@ -9,6 +9,6 @@ public interface LoginService {
 	
 	public List<Activity> findAllActivityList() throws ServiceLevelException;
 	
-	public boolean isRightUsernamePwd(String username, String password)throws ServiceLevelException;
+	//public boolean isRightUsernamePwd(String username, String password)throws ServiceLevelException;
 	
 }
