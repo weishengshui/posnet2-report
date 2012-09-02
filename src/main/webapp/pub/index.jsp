@@ -72,7 +72,7 @@ top.location.href = location.href;
 			</tr>
 			<tr valign="middle">
 				<td  align="right" width="100">验证码：</td>
-				<td valign="middle"><input type="text" name="code"  size="4"/></td><td> <img alt="" src="<%=ctxRootPath %>/kaptcha.jpg" align="middle"/></td>
+				<td valign="middle"><input type="text" name="code"  size="4"/></td><td> <img alt=""  src="<%=ctxRootPath %>/kaptcha.jpg" align="middle"/></td>
 			</tr>
 			<tr align="center">
 				<td><input type="submit" value="登录" /></td>

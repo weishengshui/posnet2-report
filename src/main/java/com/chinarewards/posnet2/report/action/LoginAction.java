@@ -23,7 +23,7 @@ public class LoginAction extends ActionSupport {
 	// 用户输入的验证码
 	private String code;
 
-	// private LoginService loginService;
+	private LoginService loginService;
 
 	public String getCode() {
 		return code;
