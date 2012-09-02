@@ -1,0 +1,79 @@
+
+
+
+
+
+CREATE TABLE Activity(
+id VARCHAR(255) NOT NULL PRIMARY KEY,
+activity_name VARCHAR(255) NOT NULL,
+startDate date NOT NULL,
+endDate date NOT NULL
+);
+
+CREATE TABLE report_user(
+username VARCHAR(255) NOT NULL PRIMARY KEY,
+password VARCHAR(255) NOT NULL,
+enabled BIT NOT NULL,
+activity_id VARCHAR(255) NOT NULL,
+descn  VARCHAR(255)
+);
+
+CREATE TABLE report_role(
+rolename VARCHAR(255) NOT NULL PRIMARY KEY,
+descn  VARCHAR(255)
+);
+
+CREATE TABLE report_user_role(
+username VARCHAR(255) NOT NULL REFERENCES report_user(username),
+rolename  VARCHAR(255) NOT NULL REFERENCES report_role(rolename),
+PRIMARY KEY(username,rolename)
+);
+
+CREATE TABLE report_authorities(
+authority VARCHAR(255) NOT NULL PRIMARY KEY,
+descn  VARCHAR(255) 
+);
+
+CREATE TABLE report_role_authorities(
+rolename   VARCHAR(255) NOT NULL REFERENCES report_role(rolename),
+authority   VARCHAR(255) NOT NULL REFERENCES report_authorities(authority),
+PRIMARY KEY(rolename, authority)
+);
+
+INSERT INTO report_authorities VALUES('report_detail','查看明细报表的权限');
+INSERT INTO report_authorities VALUES('report_token','查看验证码使用情况的权限');
+INSERT INTO report_authorities VALUES('report_total','查看总计报表的权限');
+
+INSERT INTO report_role VALUES('report_admin','报表管理员角色');
+INSERT INTO report_role VALUES('report_detail','报表明细查看角色');
+INSERT INTO report_role VALUES('report_token','验证码使用情况查看角色');
+INSERT INTO report_role VALUES('report_total','总计报表查看角色');
+INSERT INTO report_role VALUES('report_token_total','验证码和总计报表查看角色');
+
+INSERT INTO report_role_authorities VALUES('report_admin','report_detail');
+INSERT INTO report_role_authorities VALUES('report_admin','report_token');
+INSERT INTO report_role_authorities VALUES('report_admin','report_total');
+INSERT INTO report_role_authorities VALUES('report_detail','report_detail');
+INSERT INTO report_role_authorities VALUES('report_token','report_token');
+INSERT INTO report_role_authorities VALUES('report_total','report_total');
+INSERT INTO report_role_authorities VALUES('report_token_total','report_token');
+INSERT INTO report_role_authorities VALUES('report_token_total','report_total');
+
+INSERT INTO report_user VALUES('admin','admin','1','01','海岸城报表管理员');
+INSERT INTO report_user VALUES('detail','detail','1','01','海岸城明细报表查看员');
+INSERT INTO report_user VALUES('token','token','1','01','海岸城验证码使用情况查看员');
+INSERT INTO report_user VALUES('total','total','1','01','海岸城总计报表查看员');
+INSERT INTO report_user VALUES('token_total','token_total','1','01','海岸城验证码与总计报表查看员');
+
+INSERT INTO report_user_role VALUES('admin','report_admin');
+INSERT INTO report_user_role VALUES('detail','report_detail');
+INSERT INTO report_user_role VALUES('token','report_token');
+INSERT INTO report_user_role VALUES('total','report_total');
+INSERT INTO report_user_role VALUES('token_total','report_token_total');
+
+
+SELECT username,password, enabled as status FROM report_user WHERE username='admin';
+
+SELECT u.username, a.authority AS authority FROM report_user u, report_authorities a,
+report_user_role ur,report_role_authorities ra,report_role r 
+WHERE u.username=ur.username and ur.rolename=r.rolename and r.rolename=ra.rolename and ra.authority=a.authority and u.username='admin'
