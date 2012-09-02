@@ -55,12 +55,11 @@ top.location.href = location.href;
 <!-- 			</tr> -->
 <!-- 		</table> -->
 <%-- 	</s:form> --%>
-<%-- ${param.error=='true'?'': --%>
 		<h2>Welcome to China Rewards Report Application</h2>
 		<s:actionerror cssStyle="color:red"/>
-		<div class="hide}">
-			登录失败，请输入正确的登录信息！
-		</div>
+		<s:if test="#parameters.error">
+			<span style="color:red">登录失败，请输入正确的登录信息！</span>
+		</s:if>
 		<form action="<%=ctxRootPath %>/j_spring_security_check" method="post">
 			<table border="0">
 			<tr>
