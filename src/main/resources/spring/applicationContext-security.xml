@@ -51,6 +51,7 @@ WHERE u.username=ur.username and ur.rolename=r.rolename and r.rolename=ra.rolena
 	  <beans:property name="authenticationFailureHandler"  
 	   ref="simpleUrlAuthenticationFailureHandler"></beans:property>  
 	  <beans:property name="authenticationManager" ref="authenticationManager"></beans:property>  
+	  <beans:property name="loginService" ref="loginService"></beans:property>
 	 </beans:bean> 
  
   <!-- 登录成功 -->  

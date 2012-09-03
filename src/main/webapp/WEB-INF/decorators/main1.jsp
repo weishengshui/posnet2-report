@@ -21,11 +21,11 @@
 
 <div id="wrapper"><!-- Top Menu starts -->
 <div id="topmenu">
-	<s:if test="#session.User==null">
+	<s:if test="#session.User.username==null">
 		<span>&nbsp;Welcome Report System</span>
 	</s:if>
 	<s:else>
-		<span>Hello&nbsp;<sec:authentication property="name"/>&nbsp;Welcome Report System</span>
+		<span>&nbsp;Hello&nbsp;<sec:authentication property="name"/>&nbsp;Welcome Report System</span>
 	</s:else>
 </div>
 

@@ -14,6 +14,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.TextEscapeUtils;
 
+import com.chinarewards.posnet2.report.domain.User;
+import com.chinarewards.posnet2.report.exception.ServiceLevelException;
 import com.chinarewards.posnet2.report.service.user.LoginService;
 
 public class ValidateCodeUsernamePasswordAuthenticationFilter extends
@@ -31,9 +33,17 @@ public class ValidateCodeUsernamePasswordAuthenticationFilter extends
     // 输入的验证码  
     public static final String DEFAULT_VALIDATE_CODE_PARAMETER = "code";  
 	 
-   // private LoginService loginService;
+    private LoginService loginService;
 	 
 	
+	public LoginService getLoginService() {
+		return loginService;
+	}
+
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
+	}
+
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request,
 			HttpServletResponse response) throws AuthenticationException {
@@ -72,13 +82,18 @@ public class ValidateCodeUsernamePasswordAuthenticationFilter extends
         if (!isAllowEmptyValidateCode())  
             checkValidateCode(request);  
         // 根据用户和密码查询  
-//        User user = loginService.getUserByUsernamePwd(username, password);  
-//        session.setAttribute("User",  
-//                user);  
+        User user = null;
+        try {
+        	user= loginService.getUserByUsernamePwd(username, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getSession().setAttribute("User",  
+                user);  
         String userLoginIP = request.getRemoteAddr();
 		logger.info("!Login attempt detected. Username={}, IP={}",
 				new Object[] { username, userLoginIP });
-		session.setAttribute("Login", "OK");
+		request.getSession().setAttribute("Login", "OK");
         return this.getAuthenticationManager().authenticate(authRequest);  
     }  
   

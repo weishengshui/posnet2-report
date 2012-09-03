@@ -32,9 +32,8 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public User getUserByUsernamePwd(String username, String password) throws ServiceLevelException{
-		logger.debug("loginService.isRightUsernamePwd({},{})",new Object[]{username,password});
-		try {
-			User report_User = userDao.getUserByUsername(username);
+		logger.debug("loginService.getUserByUsernamePwd({},{})",new Object[]{username,password});
+			User report_User = userDao.getById(User.class, username);
 			if(report_User==null){
 				return null;
 			}
@@ -42,9 +41,6 @@ public class LoginServiceImpl implements LoginService {
 				return null;
 			}
 			return report_User;
-		} catch (DaoLevelException e) {
-			throw new ServiceLevelException(e);
-		}
 	}
 
 	public ActivityDao getActivityDao() {
